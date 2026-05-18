@@ -12,13 +12,27 @@ export default function (pi: ExtensionAPI): void {
 function setModelQuotaFooter(ctx: ExtensionContext): void {
   if (!ctx.hasUI) return;
 
-  ctx.ui.setFooter((_tui, theme) => ({
-    invalidate() {},
-    render(width: number): string[] {
-      const parts = [getModelDisplayName(ctx), getQuotaFooterText(width)].filter(Boolean);
-      return [theme.fg("accent", truncateToWidth(parts.join(" | "), width))];
-    },
-  }));
+  ctx.ui.setFooter((tui, theme, footerData) => {
+    const unsubscribeFromBranchChange = footerData.onBranchChange(() => tui.requestRender());
+
+    return {
+      dispose: unsubscribeFromBranchChange,
+      invalidate() {},
+      render(width: number): string[] {
+        const parts = [
+          getModelDisplayName(ctx),
+          getQuotaFooterText(width),
+          getGitBranchText(footerData),
+        ].filter(Boolean);
+        return [theme.fg("accent", truncateToWidth(parts.join(" | "), width))];
+      },
+    };
+  });
+}
+
+function getGitBranchText(footerData: { getGitBranch(): string | undefined }): string | undefined {
+  const branch = footerData.getGitBranch();
+  return branch ? ` ${branch}` : undefined;
 }
 
 function getModelDisplayName(ctx: ExtensionContext): string {
