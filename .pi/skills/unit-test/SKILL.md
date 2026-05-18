@@ -16,6 +16,7 @@ description: Standards for writing unit tests or improving code that is hard to 
 ## Frontend
 
 - Do not write rendering tests. Mark components without behavior as coverage ignored.
+- Use Storybook stories for simple component rendering checks.
 - Use `bun:test`.
 
 ## Backend

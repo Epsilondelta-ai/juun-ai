@@ -20,7 +20,7 @@ description: Standards for keeping code readable and small when writing or refac
 
 ## Frontend / TypeScript
 
-- Use ESLint for linting.
+- Use ESLint for code-quality linting.
 - Use Prettier for formatting.
-- Keep lint, format, and typecheck commands separate.
+- Run lint, format, and typecheck as separate commands.
 - Let Prettier handle formatting and ESLint handle code-quality rules.
