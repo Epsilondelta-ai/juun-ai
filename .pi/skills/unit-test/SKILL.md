@@ -21,3 +21,4 @@ description: Standards for writing unit tests or improving code that is hard to 
 ## Backend
 
 - For Golang, use the built-in `testing` package.
+- For TypeScript, Use `bun:test`.
