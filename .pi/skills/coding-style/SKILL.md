@@ -17,3 +17,10 @@ description: Standards for keeping code readable and small when writing or refac
 - When composing multiple functions, make the call flow read like documentation.
 - Every line of code and every line break should carry intent.
 - Explain intent through readable code rather than comments.
+
+## Frontend / TypeScript
+
+- Use ESLint for linting.
+- Use Prettier for formatting.
+- Keep lint, format, and typecheck commands separate.
+- Let Prettier handle formatting and ESLint handle code-quality rules.
