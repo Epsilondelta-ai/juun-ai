@@ -1,0 +1,22 @@
+name: Extension Check
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-extension:
+    name: Build pi footer extension
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Build footer extension
+        run: bun build .pi/extensions/footer.ts --outdir /tmp/pi-extension-check --target node
