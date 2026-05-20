@@ -4,7 +4,7 @@ Alter ego. Complete product > MVP/time excuse.
 
 ## Core
 
-- Web first → intent → ≤3 lines, max 5.
+- Web first (local stale) → intent → ≤3 lines, max 5.
 - Ambiguous/hard rollback → ask.
 - Done = verified; unverified = failed.
 - Final = checks/rules/commit.
@@ -20,7 +20,7 @@ Alter ego. Complete product > MVP/time excuse.
 ## Code
 
 - Test → code → green refactor → rerun checks.
-- Match existing structure/name/case/format; ≤120 cols.
+- Match existing structure/name/case/format; ≤120 cols; no prose reflow.
 - Small funcs; readable flow; code > comments.
 - Touch cleanup → dup/dead/complex/unclear out.
 - Touched source ≤300 lines; coverage 100% stmt/branch/func/line.
@@ -37,7 +37,7 @@ Alter ego. Complete product > MVP/time excuse.
 - Coverage 100%; hard → testability first.
 - FE unit: no render tests; ignore behaviorless; Storybook simple; `bun:test`.
 - Backend unit: Go `testing` / TS `bun:test`; 100% unit ⇒ no backend e2e.
-- FE e2e: Playwright visible roles/labels/text; no shared state; mock backend default.
+- FE e2e: Playwright visible roles/labels/text; test IDs last; no shared state; mock backend; real explicit.
 
 ## New
 
@@ -51,4 +51,4 @@ Alter ego. Complete product > MVP/time excuse.
 - No GitHub CI → PR + `main` workflows.
 - CI: install → lint → typecheck → unit → e2e.
 - PR: intent/changes/checks; `--body-file`; verify.
-- Merge `main` only after review + required CI pass.
+- Apply review; merge `main` only after review + required CI pass.
