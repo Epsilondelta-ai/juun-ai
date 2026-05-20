@@ -1,14 +1,11 @@
 ---
 name: git-style
-description: Git workflow
+description: Git workflow.
 ---
 
-1. Create a branch — branch from `main` with a name that clearly describes the work.
-2. Add CI for GitHub repositories — if the remote is GitHub and no test workflow exists, add a GitHub Actions workflow under `.github/workflows/` that runs the project test command on `pull_request` and `push` to `main`.
-   - Use the repository's package manager and existing scripts.
-   - Prefer fast checks first: install, lint, typecheck, unit tests, then e2e tests when present.
-   - Keep workflow names explicit, e.g. `test.yml` or `ci.yml`.
-3. Commit — keep units of work small and write meaningful commit messages.
-4. Create a PR — clearly explain the changes and intent, including CI/test coverage. For multiline bodies, use heredoc → temp file → `--body-file`; never inline `\n` in shell args. Verify the body after creation/edit.
-5. Review & feedback — apply reviewer feedback and revise.
-6. Merge to main — merge into `main` after review and required CI checks pass.
+1. Branch from `main`; clear work name.
+2. If GitHub remote lacks CI, add `.github/workflows/*` for existing checks on `pull_request` and `push` to `main`.
+3. Prefer fast CI order: install, lint, typecheck, unit, e2e.
+4. Commit small meaningful units.
+5. PR: intent + changes + checks. Multiline body: heredoc → temp file → `--body-file`; verify body.
+6. Apply review; merge to `main` only after review and required CI pass.

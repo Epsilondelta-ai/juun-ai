@@ -1,17 +1,17 @@
 ---
 name: e2e-test
-description: How to write e2e tests
+description: E2E test rules.
 ---
 
 ## Backend
 
-If unit test coverage reaches 100%, consider the system to work correctly without e2e tests. (This means you should achieve 100% unit test coverage.)
+- If unit coverage is 100%, treat system as covered; no e2e required.
 
 ## Frontend
 
 - Use Playwright.
-- Test based on what users see: screens, copy, roles, and states, rather than implementation details.
-- Prefer `getByRole`, `getByLabel`, and `getByText` locators; use test IDs only when necessary.
-- Each test must run independently without relying on sessions, storage, or test data from other tests.
-- When a backend is needed, use Playwright network mocks or fixtures by default.
-- Verify integration with a real backend only when the user explicitly requests it.
+- Assert user-visible screens/copy/roles/states, not internals.
+- Prefer `getByRole`, `getByLabel`, `getByText`; test IDs only if needed.
+- Tests independent: no shared session/storage/data.
+- Default backend: network mocks/fixtures.
+- Real backend only on explicit request.
