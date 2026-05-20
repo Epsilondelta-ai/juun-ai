@@ -13,11 +13,6 @@ import {
   hasActiveZaiQuotaContext,
   registerZaiQuota,
 } from "./zai-quota";
-import {
-  getKimiQuotaFooterText,
-  hasActiveKimiQuotaContext,
-  registerKimiQuota,
-} from "./kimi-quota";
 
 export function registerQuota(
   pi: ExtensionAPI,
@@ -25,12 +20,10 @@ export function registerQuota(
 ): void {
   registerCodexQuota(pi, onUpdate);
   registerZaiQuota(pi, onUpdate);
-  registerKimiQuota(pi, onUpdate);
 }
 
 export function getQuotaFooterText(width: number): string | undefined {
   if (hasActiveCodexQuotaContext()) return getCodexQuotaFooterText(width);
   if (hasActiveZaiQuotaContext()) return getZaiQuotaFooterText(width);
-  if (hasActiveKimiQuotaContext()) return getKimiQuotaFooterText(width);
   return undefined;
 }
