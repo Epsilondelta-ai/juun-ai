@@ -49,7 +49,6 @@ function normalizeModelName(raw: string): string {
     .replace(/^openai[-_ ]codex[-_ ]/i, "")
     .replace(/\bgpt\b/gi, "GPT")
     .replace(/\bglm\b/gi, "GLM")
-    .replace(/\bkimi\b/gi, "Kimi")
     .replace(/\bclaude\b/gi, "Claude")
     .replace(/\bcodex\b/gi, "Codex");
 }
