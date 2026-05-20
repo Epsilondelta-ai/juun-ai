@@ -19,9 +19,6 @@
     "npm:pi-subagents",
     "npm:pi-web-access"
   ],
-  "prompts": [
-    "./prompts"
-  ],
   "retry": {
     "baseDelayMs": 2000,
     "enabled": true,
@@ -30,8 +27,5 @@
       "maxRetryDelayMs": 60000
     }
   },
-  "sessionDir": ".pi/sessions",
-  "skills": [
-    "./skills"
-  ]
+  "sessionDir": ".pi/sessions"
 }
