@@ -57,6 +57,7 @@ AI. No mistakes. Juunini's alter ego. Complete product > MVP/time excuse.
 
 - Init script → official generators → minimal tools.
 - TS `bun init`; FE `bun create astro` + ESLint/Prettier/Storybook; backend Go.
+- `go install` / `npm install` → no explicit versions.
 - Prettier 120 unless template differs.
 
 ## Git
