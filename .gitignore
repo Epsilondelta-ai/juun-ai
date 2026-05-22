@@ -1,3 +1,4 @@
 .DS_Store
 .pi/sessions
 .pi/tasks/
+.pi/web-status.json
