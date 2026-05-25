@@ -10,6 +10,8 @@
     "./extensions"
   ],
   "packages": [
+    "npm:pi-design-deck",
+    "npm:@juicesharp/rpiv-pi",
     "npm:@juicesharp/rpiv-ask-user-question",
     "npm:@tmustier/pi-agent-teams",
     "npm:@zenobius/pi-worktrees",
