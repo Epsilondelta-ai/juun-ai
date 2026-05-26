@@ -20,7 +20,7 @@ jobs:
           git checkout FETCH_HEAD
 
       - name: Setup Bun
-        run: npm install -g bun
+        run: npm install -g bun@1.3.10
 
       - name: Build footer extension
         run: bun build .pi/extensions/footer.ts --outdir /tmp/pi-extension-check --target node
