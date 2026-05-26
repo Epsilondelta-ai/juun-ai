@@ -10,6 +10,7 @@
     "./extensions"
   ],
   "packages": [
+    "npm:pi-intercom",
     "npm:pi-design-deck",
     "npm:@juicesharp/rpiv-pi",
     "npm:@juicesharp/rpiv-ask-user-question",
