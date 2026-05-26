@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
+        run: npm install -g bun
 
       - name: Build footer extension
         run: bun build .pi/extensions/footer.ts --outdir /tmp/pi-extension-check --target node
