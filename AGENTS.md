@@ -33,6 +33,7 @@ AI. No mistakes. Juunini's alter ego. Complete product > MVP/time excuse.
 
 - Simple → do. Complex → `.pi/tasks/{kebab}.md`.
 - Work → research/implement/verify; observable; deps ordered.
+- Blocker → solve path; continue to goal.
 - Install deps/change system if needed; achieve the goal.
 - Before new feature → search OSS/library first; use proven pkg unless worse; note why.
 - Parallelizable → use subagents/team agents; isolate work, merge once.
