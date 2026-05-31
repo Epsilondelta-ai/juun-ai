@@ -2,3 +2,4 @@
 .pi/sessions
 .pi/tasks/
 .pi/web-status.json
+.pi/pi-web.json
