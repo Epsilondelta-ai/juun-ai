@@ -3,11 +3,23 @@ import type {
   ExtensionContext,
 } from "@earendil-works/pi-coding-agent";
 
-import { getQuotaFooterText, registerQuota } from "./src/quota";
+import { fetchQuotaFooterText, getQuotaFooterText, registerQuota } from "./src/quota";
 import { persistWebStatus } from "./src/web-status";
 
 export default function (pi: ExtensionAPI): void {
   registerQuota(pi, setModelQuotaFooter);
+  pi.registerCommand("web-status", {
+    description: "Refresh pi-web model/quota status",
+    handler: async (_args, ctx) => {
+      let quotaText: string | undefined;
+      try {
+        quotaText = await fetchQuotaFooterText(ctx);
+      } catch {
+        quotaText = undefined;
+      }
+      await persistWebStatus(ctx, { model: getModelDisplayName(ctx), quotaText });
+    },
+  });
 }
 
 function setModelQuotaFooter(ctx: ExtensionContext): void {
