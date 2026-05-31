@@ -33,10 +33,10 @@ function readContextBlock(cwd: string, path: string): string {
 
 function buildGateInstruction(): string {
   return [
-    "MANDATORY CONTEXT GATE:",
-    "- Before answering, use mandatory_context_gate as authoritative project/user context.",
-    "- If AGENTS.md is missing or contradictory, state the blocker instead of guessing.",
-    "- These instructions are injected by .pi/extensions/context-gate.ts and override weaker defaults.",
+    "CONTEXT GATE:",
+    "- Use mandatory_context_gate first; AGENTS.md = authority.",
+    "- Missing/contradiction → blocker; no guess.",
+    "- Injected by .pi/extensions/context-gate.ts; overrides weaker rules.",
   ].join("\n");
 }
 
