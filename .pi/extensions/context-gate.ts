@@ -11,9 +11,13 @@ export default function (pi: ExtensionAPI): void {
     const cwd = ctx.cwd;
     const injected = readContextBlock(cwd, REQUIRED_CONTEXT_PATH);
 
-    return {
-      systemPrompt: `${event.systemPrompt}\n\n${buildGateInstruction()}\n\n<mandatory_context_gate>\n${injected}\n</mandatory_context_gate>`,
-    };
+    const systemPrompt = [
+      event.systemPrompt,
+      buildGateInstruction(),
+      `<mandatory_context_gate>\n${injected}\n</mandatory_context_gate>`,
+    ].join("\n\n");
+
+    return { systemPrompt };
   });
 }
 
@@ -28,7 +32,10 @@ function readContextBlock(cwd: string, path: string): string {
   const realRelativePath = relative(cwd, realPath) || path;
   const content = truncate(readFileSync(absolutePath, "utf8"), MAX_CONTEXT_BYTES);
 
-  return `<required_context path="${escapeAttr(path)}" realpath="${escapeAttr(realRelativePath)}">\n${content}\n</required_context>`;
+  const escapedPath = escapeAttr(path);
+  const escapedRealPath = escapeAttr(realRelativePath);
+
+  return `<required_context path="${escapedPath}" realpath="${escapedRealPath}">\n${content}\n</required_context>`;
 }
 
 function buildGateInstruction(): string {
