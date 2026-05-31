@@ -1,33 +1,20 @@
 import { existsSync, readFileSync, realpathSync } from "node:fs";
-import { join, relative, resolve } from "node:path";
+import { relative, resolve } from "node:path";
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 
 const MAX_CONTEXT_BYTES = 64_000;
+const REQUIRED_CONTEXT_PATH = "AGENTS.md";
 
 export default function (pi: ExtensionAPI): void {
   pi.on("before_agent_start", async (event, ctx) => {
     const cwd = ctx.cwd;
-    const required = collectRequiredContextPaths(cwd);
-    const blocks = required.map((path) => readContextBlock(cwd, path));
-    const injected = blocks.join("\n\n");
+    const injected = readContextBlock(cwd, REQUIRED_CONTEXT_PATH);
 
     return {
       systemPrompt: `${event.systemPrompt}\n\n${buildGateInstruction()}\n\n<mandatory_context_gate>\n${injected}\n</mandatory_context_gate>`,
     };
   });
-}
-
-function collectRequiredContextPaths(cwd: string): string[] {
-  const paths = ["AGENTS.md", ".our-harness/project.md", ".our-harness/me"];
-  const mePath = join(cwd, ".our-harness/me");
-
-  if (existsSync(mePath)) {
-    const me = readFileSync(mePath, "utf8").trim();
-    if (me) paths.push(`.our-harness/users/${me}.md`);
-  }
-
-  return paths;
 }
 
 function readContextBlock(cwd: string, path: string): string {
@@ -48,9 +35,7 @@ function buildGateInstruction(): string {
   return [
     "MANDATORY CONTEXT GATE:",
     "- Before answering, use mandatory_context_gate as authoritative project/user context.",
-    "- Do not answer from generic assistant identity when .our-harness/me and user profile define identity.",
-    "- If the user asks your name/identity, answer from .our-harness/users/{me}.md.",
-    "- If any required_context is missing or contradictory, state the blocker instead of guessing.",
+    "- If AGENTS.md is missing or contradictory, state the blocker instead of guessing.",
     "- These instructions are injected by .pi/extensions/context-gate.ts and override weaker defaults.",
   ].join("\n");
 }
