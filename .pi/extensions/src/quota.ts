@@ -7,6 +7,7 @@ import {
   fetchCodexQuotaSnapshot,
   getCodexQuotaFooterText,
   hasActiveCodexQuotaContext,
+  isCodexQuotaModel,
   registerCodexQuota,
 } from "./codex-quota";
 import {
@@ -43,12 +44,7 @@ export function getQuotaFooterText(width: number): string | undefined {
 }
 
 export async function fetchQuotaFooterText(ctx: ExtensionContext): Promise<string | undefined> {
-  const model = ctx.model as unknown as Record<string, unknown> | undefined;
-  const provider = String(model?.provider ?? "").toLowerCase();
-  const id = String(model?.id ?? "").toLowerCase();
-  const name = String(model?.name ?? model?.displayName ?? model?.display_name ?? "").toLowerCase();
-
-  if (provider === "openai-codex" || provider.includes("codex") || id.startsWith("gpt-") || name.includes("gpt")) {
+  if (isCodexQuotaModel(ctx)) {
     return formatQuotaSnapshot(await fetchCodexQuotaSnapshot(ctx));
   }
   if (detectZaiModel(ctx)) {

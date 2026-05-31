@@ -125,6 +125,10 @@ export function hasActiveCodexQuotaContext(): boolean {
   return Boolean(activeCtx && isCodexModel(activeCtx));
 }
 
+export function isCodexQuotaModel(ctx: ExtensionContext): boolean {
+  return isCodexModel(ctx);
+}
+
 async function fetchLiveSnapshot(ctx: ExtensionContext): Promise<QuotaSnapshot> {
   const credential = ctx.modelRegistry.authStorage.get(OPENAI_CODEX_PROVIDER) as
     | CodexCredential
